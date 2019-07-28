@@ -14,7 +14,7 @@ public interface StoryRepository extends PagingAndSortingRepository<Story, Strin
 
     Optional<Story> findByIdAndDeleteFlag(String id, boolean deleteFlag);
 
-    Page<Story> findByTitleContainingAndDeleteFlag(String title, boolean deleteFlag, Pageable pageable);
+    Page<Story> findByTitleContainingAndContentContainingAndDeleteFlagOrderByDateCreatedDesc(String title, String content, boolean deleteFlag, Pageable pageable);
 
     List<Story> findAllByDeleteFlag(boolean deleteFlag);
 

@@ -1,15 +1,15 @@
 package com.myproject.blog.domain;
 
+import com.arychand.base.domain.Updatable;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.OffsetDateTime;
 
 @Data
 @Entity
 @Table(name = "app_story")
-public class Story {
+public class Story extends Updatable {
 
     @Id
     @Column(name = "id", length = 40)
@@ -17,23 +17,14 @@ public class Story {
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     private String id;
 
-    @Column(name = "title", length = 40)
+    @Column(name = "title", length = 1000)
     private String title;
 
-    @Column(name = "content", length = 1000)
+    @Column(name = "summary", length = 5000)
+    private String summary;
+
+    @Column(name = "content", length = 1000000)
     private String content;
-
-    @Column(name = "date_created")
-    private OffsetDateTime dateCreated;
-
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "last_updated")
-    private OffsetDateTime lastUpdated;
-
-    @Column(name = "updated_by")
-    private String updatedBy;
 
     @Column(name = "delete_flag")
     private boolean deleteFlag;

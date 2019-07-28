@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,7 +31,7 @@ public class StoryController {
         }
     }
 
-    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public StoryDto save(@RequestBody StoryDto storyDto) {
         return toDto(storyService.save(toModel(storyDto)));
     }
@@ -37,6 +39,23 @@ public class StoryController {
     @GetMapping(value = "")
     public Page<StoryDto> findSearch(StorySearchDto storySearchDto) {
         return storyService.findSearch(storySearchDto).map(this::toDto);
+    }
+
+    @GetMapping(value = "/droplist")
+    public List<StoryDto> findDroplist() {
+        List<StoryDto> storyDtoList = new ArrayList<>();
+        storyService.findDroplist().forEach(story -> storyDtoList.add(toDto(story)));
+        return storyDtoList;
+    }
+
+    @PatchMapping(value = "/")
+    public StoryDto update(@RequestBody StoryDto storyDto) {
+        return toDto(storyService.update(toModel(storyDto)));
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public StoryDto delete(@PathVariable String id) {
+        return toDto(storyService.delete(id));
     }
 
     private Story toModel(StoryDto storyDto) {

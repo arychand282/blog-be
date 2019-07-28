@@ -11,6 +11,8 @@ public class StoryDto {
 
     private String title;
 
+    private String summary;
+
     private String content;
 
     private String createdBy;

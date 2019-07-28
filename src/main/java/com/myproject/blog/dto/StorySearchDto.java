@@ -10,4 +10,6 @@ public class StorySearchDto extends SearchDto {
 
     private String title;
 
+    private String content;
+
 }

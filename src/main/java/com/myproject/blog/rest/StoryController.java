@@ -25,7 +25,9 @@ public class StoryController {
     public StoryDto findDetail(@PathVariable String id) throws Exception {
         Optional<Story> storyOptional = storyService.findDetail(id);
         if (storyOptional.isPresent()) {
-            return toDto(storyOptional.get());
+            Story story = storyOptional.get();
+            story.setContent(formattingEmbed(story.getContent()));
+            return toDto(story);
         } else {
             throw new Exception("Record Not Found for id: " + id);
         }
@@ -68,6 +70,12 @@ public class StoryController {
         StoryDto storyDto = new StoryDto();
         BeanUtils.copyProperties(story, storyDto);
         return storyDto;
+    }
+
+    private String formattingEmbed(String detailStory) {
+        detailStory = detailStory.replaceAll("<figure class=\"media\"><oembed url=\"", "<iframe src=\"");
+        detailStory = detailStory.replaceAll("\"></oembed></figure>", "\" width=\"560\" height=\"315\" frameborder=\"0\" allowfullscreen></iframe>");
+        return detailStory;
     }
 
 }

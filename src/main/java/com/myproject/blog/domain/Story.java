@@ -29,4 +29,12 @@ public class Story extends Updatable {
     @Column(name = "delete_flag")
     private boolean deleteFlag;
 
+    public Story() {
+
+    }
+
+    public Story(String id) {
+        setId(id);
+    }
+
 }

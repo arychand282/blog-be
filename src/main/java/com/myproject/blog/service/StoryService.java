@@ -21,4 +21,6 @@ public interface StoryService {
 
     Story delete(String id);
 
+//    ResponseEntity<byte[]> uploadImage(MultipartFile image, String alt);
+
 }

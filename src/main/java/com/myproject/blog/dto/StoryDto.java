@@ -3,6 +3,7 @@ package com.myproject.blog.dto;
 import lombok.Data;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Data
 public class StoryDto {
@@ -22,5 +23,7 @@ public class StoryDto {
     private String updatedBy;
 
     private OffsetDateTime lastUpdated;
+
+    private List<UploadFileResponseDto> uploadFileResponseDtoList;
 
 }

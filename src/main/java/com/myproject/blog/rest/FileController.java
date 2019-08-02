@@ -4,7 +4,6 @@ import com.arychand.base.BusinessException;
 import com.myproject.blog.domain.Story;
 import com.myproject.blog.domain.StoryFile;
 import com.myproject.blog.dto.StoryDto;
-import com.myproject.blog.dto.TestDto;
 import com.myproject.blog.dto.UploadFileResponseDto;
 import com.myproject.blog.service.FileStorageService;
 import com.myproject.blog.service.StoryFileService;
@@ -106,20 +105,6 @@ public class FileController {
                 .contentType(MediaType.parseMediaType(contentType))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
-    }
-
-    @GetMapping(value = "/test/{lat}/{longi}")
-    public TestDto test(@PathVariable String lat, @PathVariable String longi) {
-        Double latDouble = Double.parseDouble(lat);
-        Double longiDouble = Double.parseDouble(longi);
-        Integer radius = Integer.parseInt("500");
-
-        TestDto testDto = new TestDto();
-        testDto.setLat(latDouble);
-        testDto.setLongi(longiDouble);
-        testDto.setRadius(radius);
-
-        return testDto;
     }
 
 }
